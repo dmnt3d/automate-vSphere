@@ -1,0 +1,11 @@
+count  = 3
+prefix = "k8s"
+folder = "K8S-VMs"
+CPU = 2
+mem = 4096
+start_val = 1
+ipv4 = "172.16.0.17"
+subnet = "24"
+gateway = "172.16.0.1"
+domain = "ldc.int"
+dns_servers = "172.16.0.100"

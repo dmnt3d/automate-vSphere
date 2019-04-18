@@ -1,0 +1,8 @@
+vCenter = "vcdr01.ldc.int"
+userName = "administrator@vsphere.local"
+password = "VMware1!"
+datacenter = "DR-DC"
+datastore = "LSI-SSD00.local"
+cluster = "DR-Cluster"
+network = "V1720"
+template = "CentOS7-DR"
