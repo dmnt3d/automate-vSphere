@@ -18,7 +18,7 @@ setupVMs :  Setups Virtual Machine configuration using Ansible
 
 manageVMs : post create managemnet
 	create snapshot:
-	ansible-playbook -i vm-inventory --private-key=/home/master/.ssh/id_rsa --tags=[make,commit,revert] vmware-Snap.yml
+	ansible-playbook -i vm-inventory --private-key=/home/master/.ssh/id_rsa --tags "[make,commit,revert]" vmware-Snap.yml
 
 
 
