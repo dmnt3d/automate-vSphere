@@ -3,6 +3,12 @@ Automate management of VIrtual Machines for:
 - Config VMs in prepartion for SWARM or K8S
 - Snap-VMs as a backup
 
+Based on article:
+https://www.digitalocean.com/community/tutorials/how-to-create-a-kubernetes-cluster-using-kubeadm-on-centos-7
+
+
+ansible-playbook -i ../vm-inventory --private-key=/home/master/.ssh/id_rsa prep-for-kubeadm.yml
+
 
 Usage:
 createVMs : Create VM folder
