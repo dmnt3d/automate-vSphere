@@ -4,8 +4,8 @@
 # execute 
 # ansible-playbook -i inventory --private-key=/home/master/.ssh/id_rsa prep-for-kubeadm.yml
 ---
-- hosts: master
-  remote_user: root
+- hosts: masters
+  #remote_user: root
   become: yes
   gather_facts: false
   tasks:

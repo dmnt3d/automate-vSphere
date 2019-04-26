@@ -1,8 +1,10 @@
 # Snapshot Managmenet VM 
 # execute with: ansible-playbook --tags "[make,commit,revert]"
+# ansible-playbook -i inventory-hostname --private-key=/home/master/.ssh/id_rsa vmware-Snap.yml --tags "make"
 ---
 - hosts: all
   connection: local
+ # gather_facts: false
   vars:
     datacenter: 'DR-Sky'
     vCenterName: 'vcdr01.ldc.int'
@@ -62,8 +64,23 @@
       password: "{{ password }}"
       name: "{{ inventory_hostname }}"
       folder: ''      
-      state: revert #revert      
+      state: revert #revert
+      snapshot_name: "{{ snap_name }}"
       validate_certs: false
     #tags: ['never','revert']
+    tags:
+      - revert
+
+  - name: Set the state of a virtual machine to powered-On
+    vmware_guest_powerstate:
+      hostname: "{{ vCenterName }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
+      name: "{{ inventory_hostname }}"
+      validate_certs: false
+      folder: ''
+      state: powered-on
+    delegate_to: localhost
+    register: deploy
     tags:
       - revert

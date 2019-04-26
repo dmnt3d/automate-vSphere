@@ -4,10 +4,21 @@
 # execute 
 # ansible-playbook -i inventory --private-key=/home/master/.ssh/id_rsa prep-for-kubeadm.yml
 ---
-- hosts: master
+- hosts: masters
   remote_user: root
+  become: yes
 
   tasks:
+    - name: Create a centos user
+      user:
+        name: centos
+        password: "SHA512"
+        state: present
+        shell: /bin/bash 
+        system: no
+        createhome: yes
+        home: /home/centos
+
     - name: initialize the cluster
       # for Flannel
       # shell: kubeadm init --pod-network-cidr=10.244.0.0/16 >> cluster_initialized.txt
@@ -54,5 +65,5 @@
       become: yes
       become_user: centos
       shell: kubectl apply -f https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/hosted/rbac-kdd.yaml
-      
+
       

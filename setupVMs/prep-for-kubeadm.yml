@@ -111,13 +111,13 @@
 
     - name: install kubelet
       yum:
-        name: kubelet
+        name: kubelet-1.14.0
         state: present
         update_cache: true
 
     - name: install kubeadm
       yum:
-        name: kubeadm
+        name: kubeadm-1.14.0
         state: present
 
     - name: start kubelet
@@ -126,13 +126,13 @@
         enabled: yes
         state: started
 
-- hosts: master
+- hosts: masters
   become: yes
 
   tasks:
    - name: install kubectl
      yum:
-        name: kubectl
+        name: kubectl-1.14.0
         state: present
         allow_downgrade: yes
 
