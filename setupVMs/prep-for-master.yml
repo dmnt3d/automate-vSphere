@@ -61,7 +61,7 @@
         chdir: $HOME
         creates: pod_network_setup.txt
 
-    - name: install PBAC
+    - name: install RBAC
       become: yes
       become_user: centos
       shell: kubectl apply -f https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/hosted/rbac-kdd.yaml
