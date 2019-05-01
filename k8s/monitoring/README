@@ -1,0 +1,11 @@
+
+FROM:
+    https://github.com/giantswarm/prometheus
+    
+Apply the following:
+kubectl apply --filename https://raw.githubusercontent.com/giantswarm/kubernetes-prometheus/master/manifests-all.yaml
+
+Test:
+    kubectl get pods --namespace monitoring
+    kubectl port-forward <prometheus-pod-name-id> 8080:9090 -n monitoring
+
