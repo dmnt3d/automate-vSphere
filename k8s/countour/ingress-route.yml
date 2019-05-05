@@ -1,0 +1,29 @@
+# based on: https://akomljen.com/kubernetes-contour-ingress-controller-for-envoy-proxy/
+---
+apiVersion: contour.heptio.com/v1beta1
+kind: IngressRoute
+metadata:
+  name: prometheus-countour
+  namespace: monitoring
+spec: 
+  virtualhost:
+    fqdn: prom.k8s.ldc.int
+  routes: 
+    - match: 
+      services:
+        - name: prometheus
+          port: 9090
+---
+apiVersion: contour.heptio.com/v1beta1
+kind: IngressRoute
+metadata:
+  name: grafana-countour
+  namespace: monitoring
+spec: 
+  virtualhost:
+    fqdn: grafana.k8s.ldc.int
+  routes: 
+    - match: *
+      services:
+        - name: grafana
+          port: 3000
