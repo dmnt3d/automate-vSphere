@@ -1,6 +1,8 @@
 
 FROM:
     https://github.com/giantswarm/prometheus
+    https://medium.com/pharos-production/how-to-deploy-grafana-prometheus-in-kubernetes-cluster-219d23e4574f
+    
     
 Apply the following:
 kubectl apply --filename https://raw.githubusercontent.com/giantswarm/kubernetes-prometheus/master/manifests-all.yaml
