@@ -49,7 +49,7 @@ data "vsphere_tag_category" "category" {
 data "vsphere_tag" "tag" {
     # import first:
     # terraform import -var-file=DR.tfvars vsphere_tag.tag '{"category_name": "Backup-Type", "tag_name": "DR-DevOps"}' 
-    category_id = "${data.vsphere_tag_category.category.id}" #"urn:vmomi:InventoryServiceCategory:5ef51ae5-1c5f-4e55-8b44-59be69d8b093:GLOBAL"
+    category_id = "${data.vsphere_tag_category.category.id}" 
     #name = "DR-DevOps"
 }
 
