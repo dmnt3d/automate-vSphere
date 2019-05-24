@@ -41,6 +41,17 @@ resource "vsphere_folder" "vSphere-Folder" {
     path = "${var.folder}"  
     datacenter_id = "${data.vsphere_datacenter.dc.id}"
 }
+data "vsphere_tag_category" "category" {
+    # import first
+    # terraform import -var-file=DR.tfvars vsphere_tag_category.category Backup-Type    
+    # name = "Backup-Type"    
+}
+data "vsphere_tag" "tag" {
+    # import first:
+    # terraform import -var-file=DR.tfvars vsphere_tag.tag '{"category_name": "Backup-Type", "tag_name": "DR-DevOps"}' 
+    category_id = "${data.vsphere_tag_category.category.id}" #"urn:vmomi:InventoryServiceCategory:5ef51ae5-1c5f-4e55-8b44-59be69d8b093:GLOBAL"
+    #name = "DR-DevOps"
+}
 
 # create VM within the folder
 resource "vsphere_virtual_machine" "terraform-machine"
@@ -69,6 +80,15 @@ resource "vsphere_virtual_machine" "terraform-machine"
         thin_provisioned = "${data.vsphere_virtual_machine.template.disks.0.thin_provisioned}"
     }
 
+    #extra config for diskEnableUUID for vsphere-kubernetes integration
+    extra_config{
+        diskEnableUUID = "TRUE"
+    }
+
+    # add vsphere tags.
+    # import first:
+    # terraform import vsphere_tag.tag '{"category_name": "Backup-Type", "tag_name": "DR-DevOps"}'
+    tags = ["${data.vsphere_tag.tag.id}"]
 
     clone {
         template_uuid = "${data.vsphere_virtual_machine.template.id}"

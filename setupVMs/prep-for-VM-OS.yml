@@ -1,0 +1,71 @@
+# prep-target hosts for kubeadm
+# install depdendency
+# test: ansible -i inventory --private-key=/home/master/.ssh/id_rsa -u root -m ping all
+# execute 
+# ansible-playbook -i inventory --private-key=/home/master/.ssh/id_rsa prep-for-kubeadm.yml
+---
+- hosts: all
+  remote_user: root
+  #vars:
+
+  tasks:
+    - name: "Set Hostname" 
+      hostname:
+        #name: masterdr.ldc.int
+        name: "{{ server_name }}"
+
+# START host specific settings
+    - name: Remove SWAP
+      command: swapoff -a
+      async: 0
+      poll: 0
+      ignore_errors: true
+
+    - name: Disable Firewall
+      command: systemctl disable firewalld
+      async: 0
+      poll: 0
+      ignore_errors: true
+
+    - name: Stop Firewall
+      command: systemctl disable firewalld
+      async: 0
+      poll: 0
+      ignore_errors: true
+
+
+    - name: Remove unused interface
+      command: nmcli connection delete id eno16780032
+      async: 0
+      poll: 0
+      ignore_errors: true
+      
+    - name: Disable SELINUX
+      selinux:
+        state: disabled
+
+# install needed packages
+
+    - name: upgrade all packages
+      yum:
+        name: '*'
+        state: latest
+
+    - name: Install need packages
+      yum: 
+        name: 
+          - nfs-utils
+          - yum-utils
+          - device-mapper-persistent-data
+          - lvm2
+        state: installed
+# restart it!
+- hosts: all
+  remote_user: root
+
+  tasks:
+    - name: Restart server
+      command: /sbin/shutdown -r +1
+      async: 0
+      poll: 0
+      ignore_errors: true
