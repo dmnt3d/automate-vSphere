@@ -82,7 +82,7 @@ resource "vsphere_virtual_machine" "terraform-machine"
 
     #extra config for diskEnableUUID for vsphere-kubernetes integration
     extra_config{
-        diskEnableUUID = "TRUE"
+        disk.EnableUUID = "TRUE"
     }
 
     # add vsphere tags.

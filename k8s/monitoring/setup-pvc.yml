@@ -1,0 +1,30 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: grafana-pvc
+  namespace: monitoring
+  annotations:
+    volume.beta.kubertenes.io/storage-class: vsphere-slow
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: alertmanager-pvc
+  namespace: monitoring
+  annotations:
+    volume.beta.kubertenes.io/storage-class: vsphere-slow
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+
+
+

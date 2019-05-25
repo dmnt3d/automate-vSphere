@@ -9,7 +9,7 @@ spec:
   virtualhost:
     fqdn: prom.k8s.ldc.int
   routes: 
-    - match: 
+    - match: /
       services:
         - name: prometheus
           port: 9090
@@ -23,7 +23,7 @@ spec:
   virtualhost:
     fqdn: grafana.k8s.ldc.int
   routes: 
-    - match: 
+    - match: /
       services:
         - name: grafana
           port: 3000

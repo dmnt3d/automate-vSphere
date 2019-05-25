@@ -1,0 +1,2 @@
+Verify if Nodes are seen as vSphere-Hosts
+    kubectl describe nodes | grep "ProviderID"

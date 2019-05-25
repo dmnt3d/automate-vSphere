@@ -1,9 +1,8 @@
 [masters]
-master1 ansible_host=172.16.0.171 ansible_user=root server_name=node01.ldc.int server=node01
-master2 ansible_host=172.16.0.172 ansible_user=root server_name=node02.ldc.int server=node02
-master3 ansible_host=172.16.0.173 ansible_user=root server_name=node03.ldc.int server=node03
+master1 ansible_host=172.16.20.11 ansible_user=root server_name=node01.ldc.int server=node01
+master2 ansible_host=172.16.20.12 ansible_user=root server_name=node02.ldc.int server=node02
+master3 ansible_host=172.16.20.13 ansible_user=root server_name=node03.ldc.int server=node03
 
 [workers]
-worker1 ansible_host=172.16.0.174 ansible_user=root server_name=node04.ldc.int server=node04
-worker2 ansible_host=172.16.0.175 ansible_user=root server_name=node05.ldc.int server=node05
-worker3 ansible_host=172.16.0.176 ansible_user=root server_name=node06.ldc.int server=node06
+worker1 ansible_host=172.16.20.14 ansible_user=root server_name=node04.ldc.int server=node04
+worker2 ansible_host=172.16.20.15 ansible_user=root server_name=node05.ldc.int server=node05

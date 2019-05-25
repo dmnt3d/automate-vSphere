@@ -6,6 +6,7 @@
 ---
 - hosts: all
   remote_user: root
+  gather_facts: no
   #vars:
 
   tasks:
@@ -62,6 +63,7 @@
 # restart it!
 - hosts: all
   remote_user: root
+  gather_facts: no
 
   tasks:
     - name: Restart server

@@ -373,7 +373,9 @@ spec:
         configMap:
           name: alertmanager-templates
       - name: alertmanager
-        emptyDir: {}
+        persistentVolumeClaim:
+          claimName: alertmanager-pvc
+        #emptyDir: {}
 ---
 apiVersion: v1
 kind: Service
@@ -456,7 +458,10 @@ spec:
           mountPath: /var/lib/grafana
       volumes:
       - name: grafana-persistent-storage
-        emptyDir: {}
+        # define PVC
+        persistentVolumeClaim:
+          claimName: grafana-pvc
+        # emptyDir: {}
 ---
 apiVersion: v1
 data:
