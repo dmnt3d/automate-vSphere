@@ -11,3 +11,17 @@ Test:
     kubectl get pods --namespace monitoring
     kubectl port-forward <prometheus-pod-name-id> 8080:9090 -n monitoring
 
+
+
+----
+Telegraf default output:
+    [[outputs.influxdb]]
+      urls = ["http://influxdb.tick.svc.cluster.local:8086"]
+      database = "telegraf"
+      retention_policy = "rp_90d"
+      write_consistency = "any"
+      timeout = "5s"
+      username = ""
+      password = ""
+      user_agent = "telegraf"
+      insecure_skip_verify = false
