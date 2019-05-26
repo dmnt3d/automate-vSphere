@@ -139,6 +139,22 @@ data:
             target_label: instance
           - target_label: __address__
             replacement: 172.16.0.169:9116
+
+      - job_name: 'synology'
+        static_configs:
+          - targets:
+            - 172.16.0.10
+            - 192.168.0.10  # SNMP device.
+        metrics_path: /snmp
+        params:
+          module: [synology]
+        relabel_configs:
+          - source_labels: [__address__]
+            target_label: __param_target
+          - source_labels: [__param_target]
+            target_label: instance
+          - target_label: __address__
+            replacement: 172.16.0.169:9116
  
 kind: ConfigMap
 metadata:

@@ -269,7 +269,7 @@ data:
       smtp_auth_password: 'barfoo'
 
       # The API URL to use for Slack notifications.
-      slack_api_url: 'https://hooks.slack.com/services/some/api/token'
+      slack_api_url: 'https://hooks.slack.com/services/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'
 
     # # The directory from which notification templates are read.
     templates:
@@ -351,7 +351,7 @@ spec:
     spec:
       containers:
       - name: alertmanager
-        image: quay.io/prometheus/alertmanager:v0.7.1
+        image: quay.io/prometheus/alertmanager:v0.7.1 #quay.io/prometheus/alertmanager:latest #
         args:
           - '-config.file=/etc/alertmanager/config.yml'
           - '-storage.path=/alertmanager'
@@ -414,7 +414,7 @@ spec:
         component: core
     spec:
       containers:
-      - image: grafana/grafana:4.2.0
+      - image:  grafana/grafana:4.2.0 #grafana/grafana:latest
         name: grafana-core
         imagePullPolicy: IfNotPresent
         # env:
@@ -2577,7 +2577,7 @@ spec:
       serviceAccountName: prometheus-k8s
       containers:
       - name: prometheus
-        image: prom/prometheus:v1.7.0
+        image: prom/prometheus:v1.7.0 #prom/prometheus:latest #
         args:
           - '-storage.local.retention=12h'
           - '-storage.local.memory-chunks=500000'
