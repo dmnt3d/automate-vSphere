@@ -11,6 +11,7 @@ spec:
   resources:
     requests:
       storage: 10Gi
+  storageClassName: vsphere-slow
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
@@ -25,6 +26,21 @@ spec:
   resources:
     requests:
       storage: 10Gi
-
+  storageClassName: vsphere-slow
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: prometheus-pvc
+  namespace: monitoring
+  annotations:
+    volume.beta.kubertenes.io/storage-class: vsphere-fast
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 50Gi
+  storageClassName: vsphere-fast
 
 

@@ -4,13 +4,13 @@ metadata:
   name: prometheus-pvc
   namespace: monitoring
   annotations:
-    volume.beta.kubertenes.io/storage-class: vsphere-slow
+    volume.beta.kubertenes.io/storage-class: vsphere-fast
 spec:
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 10Gi
+      storage: 100Gi
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -43,11 +43,11 @@ spec:
           containerPort: 9090
         resources:
           requests:
-            cpu: 500m
-            memory: 500M
-          limits:
-            cpu: 500m
-            memory: 500M
+            cpu: 1000m#500m
+            memory: 2Gi #500M
+          #limits:
+          #  cpu: 500m
+          #  memory: 500M
         volumeMounts:
         - name: config-volume
           mountPath: /etc/prometheus
