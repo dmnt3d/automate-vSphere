@@ -269,7 +269,7 @@ data:
       smtp_auth_password: 'barfoo'
 
       # The API URL to use for Slack notifications.
-      slack_api_url: 'https://hooks.slack.com/services/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'
+      slack_api_url: #
 
     # # The directory from which notification templates are read.
     templates:
